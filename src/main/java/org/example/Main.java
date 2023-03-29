@@ -6,23 +6,30 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws InvalidNumberException, LoserException {
 
-        printColorOfRainbow();
-        calculateNumbersFromUser();
-        printSomeNumbers();
-        predictRandomNumber();
-        printDiffOriNumbers();
-        printSquaresOfNumbers();
-        calculateBankIncome();
-        printMultiplicationTable();
+        int optionNumber = returnDataFromScanner("Set a number from range [1..8]");
 
+        while (true) {
+            switch (optionNumber) {
+                case 1 -> printColorOfRainbow();
+                case 2 -> calculateNumbersFromUser();
+                case 3 -> printSomeNumbers();
+                case 4 -> predictRandomNumber();
+                case 5 -> printDiffOriNumbers();
+                case 6 -> printSquaresOfNumbers();
+                case 7 -> calculateBankIncome();
+                case 8 -> printMultiplicationTable();
+                case 0 -> {
+                    return;
+                }
+                default -> throw new InvalidNumberException("\"You are setting a invalid number.\" +\n" +
+                        "                        \" Only numbers from range [1..8] is allowed.\" +\n");
+            }
+        }
     }
 
     private static void printColorOfRainbow() throws InvalidNumberException {
 
-        System.out.println("Set a number from range [1..7]");
-
-        Scanner scanner = new Scanner(System.in);
-        int rainbowColorNumber = scanner.nextInt();
+        int rainbowColorNumber = returnDataFromScanner("Set a number from range [1..7]");
 
         switch (rainbowColorNumber) {
             case 1 -> System.out.println("It is a red color!");
@@ -40,21 +47,22 @@ public class Main {
         }
     }
 
-    private static void calculateNumbersFromUser() throws InvalidNumberException {
-        System.out.println("Set a number from range [1..100]");
-
+    private static int returnDataFromScanner(String request){
+        System.out.println(request);
         Scanner scanner = new Scanner(System.in);
-        int userNumber = scanner.nextInt();
 
-        int sum = 0;
+        return scanner.nextInt();
+    }
+
+    private static void calculateNumbersFromUser() throws InvalidNumberException {
+
+        int userNumber = returnDataFromScanner("Set a number from range [1..100]");
 
         if (userNumber > 100 || userNumber < 0) {
             throw new InvalidNumberException("Only numbers above 0 and below 100 is allowed");
         } else {
-            for (int i = 0; i < userNumber; i++) {
-                sum += i;
-            }
-            System.out.println("The sum of your numbers is equal to: " + sum);
+
+            System.out.println("The sum of your numbers is equal to: " + userNumber*(userNumber+1)/2);
         }
     }
 
@@ -66,22 +74,18 @@ public class Main {
 
     private static void predictRandomNumber() throws LoserException {
         Random random = new Random();
+
         int number = random.nextInt(10);
-
         int amountOfTries = 6;
-
-        Scanner scanner = new Scanner(System.in);
         int userNumber;
 
         for (int i = 0; i < amountOfTries; i++) {
-            System.out.println("Print a number, my dear friend: ");
-            userNumber = scanner.nextInt();
+            userNumber = returnDataFromScanner("Print a number, my dear friend: ");
 
             if (userNumber == number) {
                 System.out.println("U are winner!");
                 return;
-            }
-            else {
+            } else {
                 System.out.println("Try again." + "\n");
             }
         }
@@ -97,18 +101,14 @@ public class Main {
 
     private static void printSquaresOfNumbers() {
         for (int i = 10; i <= 20; i++) {
-            System.out.println("Squares of number " + i + " is: " + Math.pow(i, 2));
+            System.out.println("Squares of number " + i + " is: " + i*i);
         }
     }
 
     private static void calculateBankIncome() {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the amount of your money for a bank deposit: ");
-        int amountOfMoney = scanner.nextInt();
-
-        System.out.println("Enter the desirable amount of month for your  bank deposit: ");
-        int amountOfMonth = scanner.nextInt();
+        int amountOfMoney = returnDataFromScanner("Enter the amount of your money for a bank deposit: ");
+        int amountOfMonth = returnDataFromScanner("Enter the desirable amount of month for your  bank deposit: ");
 
         float percentOfIncome = 0.07f;
 
@@ -119,14 +119,13 @@ public class Main {
     }
 
     private static void printMultiplicationTable() {
-        System.out.println("");
+        System.out.println(" ");
 
         for (int i = 1; i <= 10; i++) {
             for (int j = 1; j <= 10; j++) {
                 System.out.println("Multiplication of " + i + " and " + j + " is equal to: " + i * j + " ");
-                System.out.print("");
             }
-            System.out.println("");
+            System.out.println(" ");
         }
     }
 
