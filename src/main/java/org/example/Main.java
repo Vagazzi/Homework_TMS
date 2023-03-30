@@ -7,19 +7,19 @@ public class Main {
     public static void main(String[] args) {
 
         int[] intArray = new int[5];
-//        int[] firstArrayForComparing = new int[5];
-//        int[] secondArrayForComparing = new int[5];
-//
-//        fillArray(intArray);
-//        fillArray(firstArrayForComparing);
-//        fillArray(secondArrayForComparing);
+        int[] firstArrayForComparing = new int[5];
+        int[] secondArrayForComparing = new int[5];
 
-//        checkNumberIntoTheArray(intArray);
-//        replaceNumberFromArray(intArray);
-//        printInfoAboutArrayData();
+        fillArray(intArray);
+        fillArray(firstArrayForComparing);
+        fillArray(secondArrayForComparing);
 
-//        calculateAvgSumOfArrays(firstArrayForComparing,secondArrayForComparing);
-//        printEvenNumbers();
+        checkNumberIntoTheArray(intArray);
+        replaceNumberFromArray(intArray);
+        printInfoAboutArrayData();
+
+        calculateAvgSumOfArrays(firstArrayForComparing,secondArrayForComparing);
+        printEvenNumbers();
 
         printArrayWithZeros();
     }
