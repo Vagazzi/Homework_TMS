@@ -81,10 +81,10 @@ public class Main {
         int minValue = pseudoDynamicArray[0];
         int maxValue = pseudoDynamicArray[0];
 
-        float avgValue = 0f;
+        float avgValue = 0.0f;
 
         for (int j : pseudoDynamicArray) {
-            avgValue += j / (float) pseudoDynamicArray.length;
+            avgValue += j;
             if (j < minValue) {
                 minValue = j;
             }
@@ -94,7 +94,7 @@ public class Main {
         }
 
 
-        System.out.println("The minimal element in this array is: " + minValue + ", maximal element is " + maxValue + ", and average sum is " + avgValue);
+        System.out.println("The minimal element in this array is: " + minValue + ", maximal element is " + maxValue + ", and average sum is " + avgValue / pseudoDynamicArray.length);
 
     }
 
@@ -104,9 +104,13 @@ public class Main {
         float avgSumElementSecondArray = 0;
 
         for (int i = 0; i < 5; i++) {
-            avgSumElementsFirstArray += (float) firstArray[i] / 5;
-            avgSumElementSecondArray += (float) secondArray[i] / 5;
+            avgSumElementsFirstArray +=  firstArray[i];
+            avgSumElementSecondArray +=  secondArray[i];
         }
+
+        avgSumElementsFirstArray /= 5;
+        avgSumElementSecondArray /= 5;
+
 
         if (avgSumElementsFirstArray > avgSumElementSecondArray) {
             System.out.println("The sum of elements of the first array is more than in the second");
@@ -181,7 +185,7 @@ public class Main {
         System.out.println(arrayMessage);
 
         for (int j : array) {
-            System.out.println(j + "\n");
+            System.out.println(j);
         }
     }
 
