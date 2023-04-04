@@ -26,11 +26,11 @@ public class Main {
 
 //        searchMostFrequentNumber();
 
-          calcWeightWatermelons(2d, 5d, 4, 2);
+        calcWeightWatermelons(5d, 2d, 4, 2);
     }
 
     private static int[] fillArray(int[] array, int bound) {
-        Random random = new Random( 1);
+        Random random = new Random(1);
 
         for (int i = 0; i < array.length; i++) {
             array[i] = random.nextInt(bound);
@@ -109,8 +109,8 @@ public class Main {
         float avgSumElementSecondArray = 0;
 
         for (int i = 0; i < 5; i++) {
-            avgSumElementsFirstArray +=  firstArray[i];
-            avgSumElementSecondArray +=  secondArray[i];
+            avgSumElementsFirstArray += firstArray[i];
+            avgSumElementSecondArray += secondArray[i];
         }
 
         avgSumElementsFirstArray /= 5;
@@ -169,16 +169,16 @@ public class Main {
 
     }
 
-    private static void printArrayWithZeros(){
+    private static void printArrayWithZeros() {
 
         int sizeOfArray = returnNumberFromScanner("Enter the size of array: ");
-        int [] array = new int[sizeOfArray];
+        int[] array = new int[sizeOfArray];
 
         printArray(array, "Initial array is: ");
 
         fillArray(array, 30);
 
-        for (int i = 1; i < array.length; i+=2){
+        for (int i = 1; i < array.length; i += 2) {
             array[i] = 0;
         }
 
@@ -200,7 +200,7 @@ public class Main {
         for (int i = 0; i < array.length - 1; i++) {
 
             int initalFrequency = 1;
-            
+
             for (int j = i + 1; j < array.length; j++) {
 
                 if (array[i] == array[j]) {
@@ -219,28 +219,17 @@ public class Main {
         }
     }
 
-    private static void calcWeightWatermelons(double firstWeight, double lastWeight, double countOfWatermelons, int waterMelonOfInterest){
+    private static void calcWeightWatermelons(double firstWeight, double lastWeight, double countOfWatermelons, int waterMelonOfInterest) {
 
-        double[] array = new double[(int)countOfWatermelons];
+        double[] array = new double[(int) countOfWatermelons];
 
         array[0] = firstWeight;
-        array[array.length-1] = lastWeight;
+        array[array.length - 1] = lastWeight;
 
-        double progressy = Math.abs(lastWeight - firstWeight);
+        double progress = (lastWeight - firstWeight) / array.length;
 
-        if (firstWeight < lastWeight)
-        {
-            for (int i = 1; i < array.length-1; i++){
-
-                array[i] = array[i-1] + progressy/Math.pow(2,i);
-            }
-        }
-
-        else {
-            for (int i = 1; i < array.length-1; i++){
-
-                array[i] = array[i-1] - progressy/Math.pow(2,i);
-            }
+        for (int i = 0; i < array.length; i++) {
+            array[i] = firstWeight + progress * i;
         }
 
         System.out.println(Arrays.toString(array));
