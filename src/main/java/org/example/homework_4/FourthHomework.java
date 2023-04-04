@@ -6,12 +6,12 @@ import java.util.Random;
 public class FourthHomework {
     public static void main(String[] args) {
 
-        incrementArray();
+//        incrementArray();
         printChessBoard();
-        multiplyArrays();
-        calcSumArray();
-        printDiagonals();
-        sortArray();
+//        multiplyArrays();
+//        calcSumArray();
+//        printDiagonals();
+//        sortArray();
 
     }
 
@@ -35,18 +35,18 @@ public class FourthHomework {
         System.out.println(Arrays.deepToString(array));
     }
 
+    // ХЗ, насколько это улучшило производительность, но тем не менее, гыг)))0)0
     private static void printChessBoard() {
 
         String[][] chessBoard = new String[8][8];
 
-        for (int i = 0; i < chessBoard.length; i++) {
-            for (int j = 0; j < chessBoard[i].length; j++) {
-                if ((i + j) % 2 == 0) {
-                    chessBoard[i][j] = "W";
-                } else {
-                    chessBoard[i][j] = "B";
-                }
-            }
+        String[][] copyRow = new String[][] {{"W","B","W","B", "W" , "B", "W", "B"}, {"B","W","B","W", "B" , "W", "B", "W"}};
+
+        for (int i = 0; i < chessBoard.length; i+=2) {
+
+               chessBoard[i] = copyRow[0].clone();
+               chessBoard[i+1] = copyRow[1].clone();
+
         }
 
         for (String[] strings : chessBoard) {
