@@ -1,13 +1,15 @@
 package org.example.homework_5;
 
 public class ATM {
-    private final int twentyBucks = 20;
-    private final int fiftyBucks = 50;
-    private final int oneHundredBucks = 100;
 
     private int amountOfTwentyBucksBill;
     private int amountOfFiftyBucksBill;
     private int amountOfOneHundredBucksBill;
+
+    private final int twentyBucks = 20;
+    private final int fiftyBucks = 50;
+    private final int oneHundredBucks = 100;
+
 
     public ATM(int amountOfTwentyBucksBill, int amountOfFiftyBucksBill, int amountOfOneHundredBucksBill) {
         this.amountOfTwentyBucksBill = amountOfTwentyBucksBill;

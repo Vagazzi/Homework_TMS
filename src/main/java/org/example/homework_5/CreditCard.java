@@ -10,18 +10,21 @@ public class CreditCard {
     private String accountNumber;
     private double amountOfMoney;
 
-    public CreditCard(){
-
-    }
     public CreditCard(String accountNumber, double amountOfMoney) {
         this.accountNumber = accountNumber;
         this.amountOfMoney = amountOfMoney;
     }
 
-
     public void putMoneyOnTheAccount(int amountOfMoney) {
         this.amountOfMoney += amountOfMoney;
         System.out.println("Finance income: " + amountOfMoney + " bucks. Your current balance is: " + this.amountOfMoney + " bucks.");
+    }
+
+    public void getInfoAboutAccount (){
+        System.out.println("--------------------");
+        System.out.println("Account number is: " + this.accountNumber);
+        System.out.println("Amount of money on this account is: " + this.amountOfMoney);
+        System.out.println("--------------------");
     }
 
     public void withdrawMoney(int amountOfMoney) {
@@ -31,12 +34,5 @@ public class CreditCard {
         } else {
             System.out.println("Your balance is not enough to carry out this transaction.");
         }
-    }
-
-    public void getInfoAboutAccount (){
-        System.out.println("--------------------");
-        System.out.println("Account number is: " + this.accountNumber);
-        System.out.println("Amount of money on this account is: " + this.amountOfMoney);
-        System.out.println("--------------------");
     }
 }
