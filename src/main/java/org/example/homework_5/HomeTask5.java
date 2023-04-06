@@ -1,6 +1,6 @@
 package org.example.homework_5;
 
-public class HomeTaskSix {
+public class HomeTask5 {
     public static void main(String[] args) {
         creditCardTransactions();
         createSomePC();
