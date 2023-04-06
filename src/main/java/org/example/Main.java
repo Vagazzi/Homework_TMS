@@ -1,4 +1,4 @@
-package org.example.homework_4;
+package org.example;
 
 import java.util.Random;
 import java.util.Scanner;
