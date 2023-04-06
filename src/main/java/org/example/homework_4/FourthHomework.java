@@ -57,6 +57,8 @@ public class FourthHomework {
         }
         System.out.println();
 
+        copyRow.clone();
+
     }
 
     private static void multiplyArrays() {
