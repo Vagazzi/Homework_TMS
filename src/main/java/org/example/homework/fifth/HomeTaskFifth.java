@@ -1,6 +1,6 @@
-package org.example.homework_5;
+package org.example.homework.fifth;
 
-public class HomeTaskSix {
+public class HomeTaskFifth {
     public static void main(String[] args) {
         createSomePC();
         creditCardTransactions();
@@ -41,24 +41,11 @@ public class HomeTaskSix {
     private static void withdrawMoney() {
         ATM atm = new ATM(1000, 1000, 1000);
 
-        atm.withdrawMoney(100);
+        atm.withdrawMoney(190);
         atm.printInfoAboutBills();
 
-        atm.withdrawMoney(50);
-        atm.printInfoAboutBills();
+        atm.withdrawMoney(-1203123);
 
-        atm.withdrawMoney(20);
-        atm.printInfoAboutBills();
-
-
-        atm.withdrawMoney(4500);
-        atm.printInfoAboutBills();
-
-        atm.withdrawMoney(4432);
-        atm.printInfoAboutBills();
-
-        atm.withdrawMoney(4564234);
-        atm.printInfoAboutBills();
     }
 
 }

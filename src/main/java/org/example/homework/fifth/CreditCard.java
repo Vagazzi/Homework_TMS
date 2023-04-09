@@ -1,22 +1,20 @@
-package org.example.homework_5;
+package org.example.homework.fifth;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class CreditCard {
 
     private String accountNumber;
     private double amountOfMoney;
 
-    public CreditCard(){
-
-    }
-    public CreditCard(String accountNumber, double amountOfMoney) {
-        this.accountNumber = accountNumber;
-        this.amountOfMoney = amountOfMoney;
-    }
 
     public void putMoneyOnTheAccount(int amountOfMoney) {
         this.amountOfMoney += amountOfMoney;
