@@ -1,5 +1,5 @@
 package org.example.homework.fifth;
 
-public enum typeOfStorage {
+public enum TypeOfStorage {
     Internal, External
 }

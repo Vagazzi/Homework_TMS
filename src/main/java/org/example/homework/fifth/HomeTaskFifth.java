@@ -29,7 +29,7 @@ public class HomeTaskFifth {
 
         PC pcFirst = new PC("dream pc", 300.00d);
 
-        HDD hddStorage = new HDD("Seagate", 1024, typeOfStorage.Internal.toString());
+        HDD hddStorage = new HDD("Seagate", 1024, TypeOfStorage.Internal.toString());
         RAM ramStick = new RAM("G. Skill Royal Gold", 32);
         PC pcSecond = new PC(hddStorage, ramStick, "shit pc", 999999.99);
 
