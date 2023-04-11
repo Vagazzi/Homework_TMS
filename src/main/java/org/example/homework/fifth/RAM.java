@@ -1,4 +1,4 @@
-package org.example.homework_5;
+package org.example.homework.fifth;
 
 
 import lombok.Getter;

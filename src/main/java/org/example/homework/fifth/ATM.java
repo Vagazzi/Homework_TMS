@@ -1,4 +1,4 @@
-package org.example.homework_5;
+package org.example.homework.fifth;
 
 public class ATM {
     private final int twentyBucks = 20;

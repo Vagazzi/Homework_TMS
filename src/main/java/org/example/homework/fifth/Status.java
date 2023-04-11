@@ -1,4 +1,4 @@
-package org.example.homework_5;
+package org.example.homework.fifth;
 
 public class Status {
     public static boolean STATUS_OK = true;
