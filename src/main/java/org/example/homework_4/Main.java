@@ -1,4 +1,7 @@
-package org.example;
+package org.example.homework_4;
+
+import org.example.homework_4.InvalidNumberException;
+import org.example.homework_4.LoserException;
 
 import java.util.Random;
 import java.util.Scanner;
