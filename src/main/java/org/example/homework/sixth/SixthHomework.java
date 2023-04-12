@@ -58,35 +58,24 @@ public class SixthHomework {
         Employee worker = new Worker();
         Employee financeManager = new FinanceManager();
 
-        CEO.setEmployeePosition("CEO");
-        worker.setEmployeePosition("Worker");
-        financeManager.setEmployeePosition("Finance manager");
+        System.out.println(CEO.getClass().getSimpleName());
+        System.out.println(worker.getClass().getSimpleName());
+        System.out.println(financeManager.getClass().getSimpleName());
 
-        System.out.println(CEO.getEmployeePosition());
-        System.out.println(worker.getEmployeePosition());
-        System.out.println(financeManager.getEmployeePosition());
     }
-
-
 
     private static void documentFlow() {
 
         Calendar dateOfDocument = new GregorianCalendar();
-        dateOfDocument.set(Calendar.YEAR, 2017);
-        dateOfDocument.set(Calendar.MONTH, 2);
-        dateOfDocument.set(Calendar.DAY_OF_MONTH, 2);
+        dateOfDocument.set(2018, Calendar.MAY, 14);
 
         Calendar contractStart = new GregorianCalendar();
-        contractStart.set(Calendar.YEAR, 2019);
-        contractStart.set(Calendar.MONTH, 11);
-        contractStart.set(Calendar.DAY_OF_MONTH, 14);
+        contractStart.set(2020, Calendar.APRIL, 12);
 
         Calendar contractFinish = new GregorianCalendar();
-        contractStart.set(Calendar.YEAR, 2019);
-        contractStart.set(Calendar.MONTH, 11);
-        contractStart.set(Calendar.DAY_OF_MONTH, 14);
+        dateOfDocument.set(2014, Calendar.MAY, 14);
 
-        Document invoice = new FinancialInvoice(dateOfDocument, "1",10000.44, "322");
+        Document invoice = new FinancialInvoice(dateOfDocument, "1", 10000.44, "322");
         Document order = new OrderForDelivering(dateOfDocument, "2", "Pivo", 100000);
         Document contract = new ContractWithEmployee(dateOfDocument, "3", contractStart, contractFinish, "Жмышенко Валерий Альбертович");
 
