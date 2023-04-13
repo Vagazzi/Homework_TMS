@@ -16,7 +16,6 @@ import org.example.homework.sixth.thirdtask.documents.OrderForDelivering;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class SixthHomework {
@@ -24,7 +23,7 @@ public class SixthHomework {
 
         calculateData();
         setPositions();
-        documentFlow();
+        simulateDocumentFlow();
     }
 
     private static void calculateData() {
@@ -54,17 +53,17 @@ public class SixthHomework {
     }
 
     private static void setPositions() {
-        Employee CEO = new CEO();
-        Employee worker = new Worker();
-        Employee financeManager = new FinanceManager();
+        Employee ceo = new CEO("CEO");
+        Employee worker = new Worker("Worker");
+        Employee financeManager = new FinanceManager("Finance manager");
 
-        System.out.println(CEO.getClass().getSimpleName());
-        System.out.println(worker.getClass().getSimpleName());
-        System.out.println(financeManager.getClass().getSimpleName());
+        System.out.println(ceo.getEmployeePosition());
+        System.out.println(worker.getEmployeePosition());
+        System.out.println(financeManager.getEmployeePosition());
 
     }
 
-    private static void documentFlow() {
+    private static void simulateDocumentFlow() {
 
         Calendar dateOfDocument = new GregorianCalendar();
         dateOfDocument.set(2018, Calendar.MAY, 14);
@@ -84,6 +83,17 @@ public class SixthHomework {
         register.pushData(contract);
         register.pushData(invoice);
         register.pushData(order);
+        register.pushData(contract);
+        register.pushData(contract);
+        register.pushData(contract);
+        register.pushData(contract);
+        register.pushData(contract);
+        register.pushData(contract);
+        register.pushData(contract);
+        register.pushData(contract);
+        register.pushData(contract);
+
+
         register.getInformation();
     }
 

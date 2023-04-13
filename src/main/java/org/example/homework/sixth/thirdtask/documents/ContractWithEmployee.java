@@ -13,6 +13,7 @@ import java.util.Calendar;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContractWithEmployee extends Document {
+
     private Calendar initialContractDate;
     private Calendar finishContractDate;
 

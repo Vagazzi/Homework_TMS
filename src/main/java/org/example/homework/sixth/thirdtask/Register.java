@@ -6,11 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Register {
-    private List<Document> register = new ArrayList<>(10);
+    private List<Document> register = new ArrayList<>();
     private int initialPosition = 0;
 
     public void pushData(Document document) {
-        register.add(document);
+        if (register.size() > 10) {
+            System.out.println("Size of register is too big");
+            return;
+        } else {
+            register.add(document);
+        }
     }
 
     public void getInformation() {
