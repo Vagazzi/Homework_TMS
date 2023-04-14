@@ -21,16 +21,16 @@ public class Phone {
         System.out.println("Calls " + name);
     }
 
-    public void receiveCall(String name, String callNumber){
+    public void receiveCall(String name, String callNumber) {
         System.out.println("Calls " + name + " with this number: " + callNumber);
     }
 
-    public void sendMessage(String...recipients){
+    public void sendMessage(String... recipients) {
         System.out.println("Number phones of recipients: " + Arrays.toString(recipients));
     }
 
     @Override
-    public boolean equals(Object object){
+    public boolean equals(Object object) {
         Phone phone = (Phone) object;
 
         return model.equals(phone.model);
