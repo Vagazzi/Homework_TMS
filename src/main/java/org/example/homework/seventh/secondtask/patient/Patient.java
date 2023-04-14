@@ -1,4 +1,4 @@
-package org.example.homework.seventh.secondTask.patient;
+package org.example.homework.seventh.secondtask.patient;
 
 public class Patient {
     private HealingPlan healingPlan;
