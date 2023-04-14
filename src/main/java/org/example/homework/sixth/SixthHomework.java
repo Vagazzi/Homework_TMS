@@ -24,6 +24,7 @@ public class SixthHomework {
         calculateData();
         setPositions();
         simulateDocumentFlow();
+
     }
 
     private static void calculateData() {

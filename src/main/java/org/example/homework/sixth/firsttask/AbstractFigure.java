@@ -1,5 +1,6 @@
 package org.example.homework.sixth.firsttask;
 
+
 public abstract class AbstractFigure {
 
 
