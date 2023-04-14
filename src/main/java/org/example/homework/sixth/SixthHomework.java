@@ -53,9 +53,9 @@ public class SixthHomework {
     }
 
     private static void setPositions() {
-        Employee ceo = new CEO("CEO");
-        Employee worker = new Worker("Worker");
-        Employee financeManager = new FinanceManager("Finance manager");
+        Employee ceo = new CEO();
+        Employee worker = new Worker();
+        Employee financeManager = new FinanceManager();
 
         System.out.println(ceo.getEmployeePosition());
         System.out.println(worker.getEmployeePosition());
@@ -76,7 +76,7 @@ public class SixthHomework {
 
         Document invoice = new FinancialInvoice(dateOfDocument, "1", 10000.44, "322");
         Document order = new OrderForDelivering(dateOfDocument, "2", "Pivo", 100000);
-        Document contract = new ContractWithEmployee(dateOfDocument, "3", contractStart, contractFinish, "Жмышенко Валерий Альбертович");
+        Document contract = new ContractWithEmployee(dateOfDocument, "3", contractStart, contractFinish, "Van Darkholme");
 
         Register register = new Register();
 

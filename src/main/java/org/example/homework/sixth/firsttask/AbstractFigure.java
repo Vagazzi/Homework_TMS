@@ -1,7 +1,5 @@
 package org.example.homework.sixth.firsttask;
 
-
-//если подрубить душнилу, то круг - правильный 65537-угольный прямоугольник.
 public abstract class AbstractFigure {
 
 
