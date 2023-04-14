@@ -1,4 +1,4 @@
-package org.example.homework.seventh.firstTask;
+package org.example.homework.seventh.firsttask;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +27,13 @@ public class Phone {
 
     public void sendMessage(String...recipients){
         System.out.println("Number phones of recipients: " + Arrays.toString(recipients));
+    }
+
+    @Override
+    public boolean equals(Object object){
+        Phone phone = (Phone) object;
+
+        return model.equals(phone.model);
     }
 
 }

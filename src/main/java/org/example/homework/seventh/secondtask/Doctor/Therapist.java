@@ -1,4 +1,4 @@
-package org.example.homework.seventh.secondTask.Doctor;
+package org.example.homework.seventh.secondtask.Doctor;
 
 public class Therapist extends Doctor{
 

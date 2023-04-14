@@ -1,7 +1,4 @@
-package org.example.homework.seventh.secondTask.Doctor;
-
-import lombok.Getter;
-import org.example.homework.seventh.secondTask.Doctor.Doctor;
+package org.example.homework.seventh.secondtask.Doctor;
 
 public class Surgeon extends Doctor {
 

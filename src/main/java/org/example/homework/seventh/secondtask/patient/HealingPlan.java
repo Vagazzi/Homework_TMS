@@ -1,12 +1,12 @@
-package org.example.homework.seventh.secondTask.patient;
+package org.example.homework.seventh.secondtask.patient;
 
 
 import lombok.AllArgsConstructor;
 
-import org.example.homework.seventh.secondTask.Doctor.Dentist;
-import org.example.homework.seventh.secondTask.Doctor.Doctor;
-import org.example.homework.seventh.secondTask.Doctor.Surgeon;
-import org.example.homework.seventh.secondTask.Doctor.Therapist;
+import org.example.homework.seventh.secondtask.Doctor.Dentist;
+import org.example.homework.seventh.secondtask.Doctor.Doctor;
+import org.example.homework.seventh.secondtask.Doctor.Surgeon;
+import org.example.homework.seventh.secondtask.Doctor.Therapist;
 
 @AllArgsConstructor
 public class HealingPlan {

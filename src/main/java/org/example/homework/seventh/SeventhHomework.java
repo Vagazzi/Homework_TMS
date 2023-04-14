@@ -1,12 +1,12 @@
 package org.example.homework.seventh;
 
-import org.example.homework.seventh.firstTask.Phone;
-import org.example.homework.seventh.secondTask.patient.Patient;
+import org.example.homework.seventh.firsttask.Phone;
+import org.example.homework.seventh.secondtask.patient.Patient;
 
 public class SeventhHomework {
     public static void main(String[] args) {
-//        simulatePhone();
-          simulatePolyclinic();
+        simulatePhone();
+        simulatePolyclinic();
     }
 
     private static void simulatePolyclinic(){
@@ -22,6 +22,7 @@ public class SeventhHomework {
     private static void simulatePhone() {
 
         Phone iPhone = new Phone("88005553535", "iPhone 14 Pro Max", 150);
+
         Phone samsung = new Phone("88005553535", "Samsung Galaxy S 23 Ultra", 180);
         Phone xiaomi = new Phone("880053231335", "Xiaomi Redmi Note 7", 180);
 
