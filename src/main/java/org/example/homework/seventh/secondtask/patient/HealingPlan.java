@@ -10,7 +10,7 @@ import org.example.homework.seventh.secondtask.Doctor.Surgeon;
 import org.example.homework.seventh.secondtask.Doctor.Therapist;
 
 @AllArgsConstructor
-@Slf4j
+//@Slf4j
 public class HealingPlan {
 
     private int healCode;

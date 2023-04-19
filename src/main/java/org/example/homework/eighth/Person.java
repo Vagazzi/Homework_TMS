@@ -2,15 +2,17 @@ package org.example.homework.eighth;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
+@Slf4j
 public class Person {
 
-    private Vote vote;
-
+    private String selectedCandidate;
+    private boolean isVoted = false;
     private int age;
     private String name;
 
@@ -20,39 +22,35 @@ public class Person {
     }
 
     public void printInfo() {
-        System.out.println();
-        System.out.println("We have a information about this person: ");
-        System.out.println("His credentials: " + this.name);
-        System.out.println("His age: " + this.age);
+
+        log.info("\n We have a information about this person: ");
+        log.info("His credentials: {} ", this.name);
+        log.info("His age: {}", this.age);
+
     }
 
-    public void vote(PolingStation polingStation,String candidate) {
+    public void vote(String candidateName) {
 
-        vote = new Vote();
-
-        ArrayList<Candidate> candidates = ElectionComittee.getInstance().getCandidateList();
-
-        switch (candidate) {
-            case "Alexander Lukashenko" -> {
-                vote.setLukashenko(true);
-                candidates.get(0).incrementVotes(1000);
-            }
-            case "Svetlana Tikhanovskaya" -> {
-                vote.setTikhanovskaya(true);
-                candidates.get(1).incrementVotes(1);
-            }
-            case "Victor Babariko" -> {
-                vote.setBabariko(true);
-                candidates.get(2).incrementVotes(1);
-            }
-            case "Against all" -> {
-                vote.setAgainstAll(true);
-                polingStation.incrementVotes();
-            }
-            default -> {
-                System.out.println("This candidate is not exists!");
-            }
+        if (isVoted) {
+            System.out.println("You have been voted, go away");
+            return;
         }
 
+        List<Candidate> candidates = ElectionComittee.getInstance().getCandidateList();
+
+        Candidate candidate = candidates.stream()
+                .filter(candidate1 -> candidate1.getName().equals(candidateName))
+                .findFirst()
+                .orElse(null);
+
+        if (candidate == null) {
+            log.info("Candidate not found");
+            return;
+        }
+
+        isVoted = true;
+        candidate.incrementVotes();
+
+        selectedCandidate = candidate.getName();
     }
 }
