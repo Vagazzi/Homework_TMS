@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+import java.util.Optional;
 
 @Setter
 @Getter
@@ -36,7 +37,7 @@ public class Person {
             return;
         }
 
-        List<Candidate> candidates = ElectionComittee.getInstance().getCandidateList();
+        List<Candidate> candidates = ElectionComittee.getInstance().getCandidates();
 
         Candidate candidate = candidates.stream()
                 .filter(candidate1 -> candidate1.getName().equals(candidateName))
@@ -49,7 +50,9 @@ public class Person {
         }
 
         isVoted = true;
+
         candidate.incrementVotes();
+
 
         selectedCandidate = candidate.getName();
     }

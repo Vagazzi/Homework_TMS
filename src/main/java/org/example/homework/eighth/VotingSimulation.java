@@ -1,5 +1,6 @@
 package org.example.homework.eighth;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VotingSimulation {
@@ -11,8 +12,8 @@ public class VotingSimulation {
         List<PolingStation> polingStationsList = initializePolingStations();
         List<Person> people = initializePeople();
 
-        electionComittee.setCandidate(candidates);
-        electionComittee.setPolingStation(polingStationsList);
+        electionComittee.addCandidates(candidates);
+        electionComittee.addPolingStation(polingStationsList);
 
         ElectionComittee.printCandidateList();
 
@@ -25,6 +26,8 @@ public class VotingSimulation {
         polingStationsList.forEach(PolingStation::printInfo);
 
         electionComittee.announceWinner();
+
+        candidates.forEach(Candidate::printInfo);
 
     }
 
@@ -50,17 +53,32 @@ public class VotingSimulation {
 
     private static List<Person> initializePeople() {
 
-        Person alex = new Person("Alex", 54);
-        Person pasha = new Person("Pasha", 30);
-        Person natasha = new Person("Natasha", 21);
+        List<Person> personList = new ArrayList<>();
 
-        return List.of(alex, pasha, natasha);
+        for (int i = 0; i < 100; i++) {
+            personList.add(new Person("Alex", i));
+        }
+
+        return personList;
     }
 
     private static void vote(List<Person> people) {
 
-        people.get(0).vote("Alexander Lukashenko");
-        people.get(1).vote("Svetlana Tikhanovskaya");
-        people.get(2).vote("Against all");
+        for (int i = 0, size = people.size(); i < size; i += 4) {
+            people.get(i).vote("Alexander Lukashenko");
+        }
+
+        for (int i = 1, size = people.size(); i < size; i += 4) {
+            people.get(i).vote("Svetlana Tikhanovskaya");
+        }
+
+        for (int i = 2, size = people.size(); i < size; i += 4) {
+            people.get(i).vote("Victor Babariko");
+        }
+
+        for (int i = 3, size = people.size(); i < size; i += 4) {
+            people.get(i).vote("Against all");
+        }
+
     }
 }

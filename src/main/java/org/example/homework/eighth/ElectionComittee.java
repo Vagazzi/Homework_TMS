@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -14,37 +13,32 @@ import java.util.List;
 @Slf4j
 public class ElectionComittee {
 
-    private volatile static ElectionComittee instance;
-    private static List<Candidate> candidateList = new ArrayList<>();
-    private List<PolingStation> polingStationsList = new ArrayList<>();
+    private static final ElectionComittee instance = new ElectionComittee();
+    private static List<Candidate> candidates = new ArrayList<>();
+    private List<PolingStation> polingStations = new ArrayList<>();
 
     public static ElectionComittee getInstance() {
-        if (instance == null) {
-            synchronized (ElectionComittee.class) {
-                instance = new ElectionComittee();
-            }
-        }
         return instance;
     }
 
-    public List<Candidate> getCandidateList() {
-        return candidateList;
+    public List<Candidate> getCandidates() {
+        return candidates;
     }
 
     public static void printCandidateList() {
-        candidateList.forEach(Candidate::printInfo);
+        candidates.forEach(Candidate::printInfo);
     }
 
-    public void setCandidate(List<Candidate> candidates) {
-        candidateList.addAll(candidates);
+    public void addCandidates(List<Candidate> candidates) {
+        ElectionComittee.candidates.addAll(candidates);
     }
 
-    public void setPolingStationsList(PolingStation polingStationsList) {
-        this.polingStationsList.add(polingStationsList);
+    public void addPolingStation(PolingStation polingStations) {
+        this.polingStations.add(polingStations);
     }
 
-    public void setPolingStation(List<PolingStation> polingStation) {
-        polingStationsList.addAll(polingStation);
+    public void addPolingStation(List<PolingStation> polingStation) {
+        polingStations.addAll(polingStation);
     }
 
     public void announceWinner() {
@@ -66,12 +60,8 @@ public class ElectionComittee {
 
     }
 
-    public void deleteCandidate(Candidate candidate) {
-        candidateList.remove(candidate);
-    }
-
     public void checkHonesty() {
-        List<Candidate> candidates = ElectionComittee.getInstance().getCandidateList();
+        List<Candidate> candidates = ElectionComittee.getInstance().getCandidates();
 
         int countOfVoices = candidates.stream()
                 .map(Candidate::getCountOfVoices)
