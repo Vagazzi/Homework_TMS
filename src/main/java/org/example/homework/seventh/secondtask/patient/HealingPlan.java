@@ -3,12 +3,14 @@ package org.example.homework.seventh.secondtask.patient;
 
 import lombok.AllArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.homework.seventh.secondtask.Doctor.Dentist;
 import org.example.homework.seventh.secondtask.Doctor.Doctor;
 import org.example.homework.seventh.secondtask.Doctor.Surgeon;
 import org.example.homework.seventh.secondtask.Doctor.Therapist;
 
 @AllArgsConstructor
+//@Slf4j
 public class HealingPlan {
 
     private int healCode;

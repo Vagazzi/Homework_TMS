@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Register {
     private List<Document> register = new ArrayList<>();
-    private int initialPosition = 0;
 
     public void pushData(Document document) {
         if (register.size() > 10) {
