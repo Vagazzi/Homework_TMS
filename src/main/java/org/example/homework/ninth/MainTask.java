@@ -6,18 +6,50 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MainTask {
 
-    private static final String initialString = "5555-sss-5555-sss-5s5s";
+    private static final String templateString = "5555-sss-5555-sss-5s5s";
+    private static String numberDoc;
+
+
+    static void initializeString(int number, char letter) {
+        StringBuilder tempBuilder = new StringBuilder();
+
+        for (int i = 0; i < 2; i++) {
+            tempBuilder.append(number);
+            tempBuilder.append(number);
+            tempBuilder.append(number);
+            tempBuilder.append(number);
+            tempBuilder.append("-");
+            tempBuilder.append(letter);
+            tempBuilder.append(letter);
+            tempBuilder.append(letter);
+            tempBuilder.append("-");
+        }
+
+        tempBuilder.append(number);
+        tempBuilder.append(letter);
+        tempBuilder.append(number);
+        tempBuilder.append(letter);
+
+        numberDoc = tempBuilder.toString();
+    }
 
     static void printNumbersBlock() {
         StringBuilder tempString = new StringBuilder();
         int counterOfEntries = 0;
 
-        for (int i = 0, size = initialString.length(); i < size; i++) {
-            if (initialString.charAt(i) == '5') {
+        int ascii;
+        char number = numberDoc.charAt(0);
+
+        for (int i = 0, size = numberDoc.length(); i < size; i++) {
+            ascii = numberDoc.charAt(i);
+            if (ascii >= 48 && ascii <= 57) {
                 counterOfEntries++;
             }
             if (counterOfEntries == 4) {
-                tempString.append("5555");
+                tempString.append(number);
+                tempString.append(number);
+                tempString.append(number);
+                tempString.append(number);
                 counterOfEntries = 0;
             }
 
@@ -29,11 +61,15 @@ public class MainTask {
     }
 
     static void replaceChars() {
-        StringBuilder tempString = new StringBuilder(initialString);
+        StringBuilder tempString = new StringBuilder(numberDoc);
         int counterOfEntries = 0;
+        int ascii;
 
         for (int i = 0, size = tempString.length(); i < size; i++) {
-            if (tempString.charAt(i) == 's') {
+
+            ascii = numberDoc.charAt(i);
+
+            if (isLetter(ascii)) {   //проверка на заглавные и строчные буквы
                 counterOfEntries++;
             }
             if (counterOfEntries == 3) {
@@ -47,10 +83,13 @@ public class MainTask {
 
     static void printStringLowCase() {
         StringBuilder tempString = new StringBuilder();
+        int ascii;
 
-        for (int i = 0, size = initialString.length(); i < size; i++) {
-            if (initialString.charAt(i) == 's') {
-                tempString.append(initialString.charAt(i));
+        for (int i = 0, size = numberDoc.length(); i < size; i++) {
+            ascii = numberDoc.charAt(i);
+
+            if (isLetter(ascii)) {
+                tempString.append(numberDoc.charAt(i));
             }
         }
 
@@ -65,10 +104,13 @@ public class MainTask {
 
     static void printStringHighCase() {
         StringBuilder tempString = new StringBuilder();
+        int ascii;
 
-        for (int i = 0, size = initialString.length(); i < size; i++) {
-            if (initialString.charAt(i) == 's') {
-                tempString.append(initialString.toUpperCase().charAt(i));
+        for (int i = 0, size = numberDoc.length(); i < size; i++) {
+            ascii = numberDoc.charAt(i);
+
+            if (isLetter(ascii)) {
+                tempString.append(numberDoc.toUpperCase().charAt(i));
             }
         }
 
@@ -83,7 +125,7 @@ public class MainTask {
 
     static void isContainsSubstring() {
 
-        if (initialString.contains("abc") || initialString.contains("ABC")) {
+        if (numberDoc.contains("abc") || numberDoc.contains("ABC")) {
             log.info("This string contains this char sequence");
         } else {
             log.info("This string doesn't contains this char sequence");
@@ -92,7 +134,7 @@ public class MainTask {
 
     static void isContainsNumberSequence() {
 
-        if (initialString.startsWith("555")) {
+        if (numberDoc.startsWith("555")) {
             log.info("This string starts with number sequence");
         } else {
             log.info("This string doesn't starts with number sequence");
@@ -100,10 +142,14 @@ public class MainTask {
     }
 
     static void isEndsWithSubstring() {
-        if (initialString.endsWith("1a2b")) {
+        if (numberDoc.endsWith("1a2b")) {
             log.info("This string ends with this sequence");
         } else {
             log.info("This string doesn't ends with this sequence");
         }
+    }
+
+    private static boolean isLetter(int ascii) {
+        return ascii >= 65 && ascii <= 90 || ascii >= 97 && ascii <= 122;
     }
 }

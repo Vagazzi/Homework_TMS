@@ -12,12 +12,12 @@ public class NinthHomework {
     public static void main(String[] args) {
 
         callMethodsForMainTask();
-        findLongestWord();
-        findMinimalSymbolsEntry();
-        doubleChar();
+   //     findLongestWord();
+   //     findMinimalSymbolsEntry();
+   //     doubleChar();
 
         try {
-            boolean res = checkPalindrome(500);
+            boolean res = checkPalindrome(4);
             log.info("This word is palindrome? {}", res);
         }
         catch (Exception e){
@@ -28,6 +28,7 @@ public class NinthHomework {
 
     private static void callMethodsForMainTask() {
 
+        MainTask.initializeString(4, 'P');
         MainTask.printNumbersBlock();
         MainTask.replaceChars();
         MainTask.printStringLowCase();
@@ -39,14 +40,13 @@ public class NinthHomework {
     }
 
     private static void findLongestWord() {
-        String tempString = " asda qwe 123 3 21 31 assw";
+        String tempString = "asda qwe 123 3 21 31 assw";
 
-        String result = Arrays.stream(tempString.split(" "))
+        Optional<String> result = Arrays.stream(tempString.split(" "))
                 .sorted(Comparator.comparingInt(String::length))
-                .reduce((first, second) -> second)
-                .orElse(null);
+                .reduce((first, second) -> second);
 
-        log.info("word: {}", result);
+        log.info("word: {}", result.get());
 
     }
 
@@ -82,7 +82,7 @@ public class NinthHomework {
     }
 
     private static boolean checkPalindrome(int wordPosition) throws NoSuchElementException{
-        String tempString = "mem mummy shit loh";
+        String tempString = "mem mummy floppa flolf";
 
         String[] s = tempString.split(" ");
 
