@@ -1,0 +1,4 @@
+ahahahsdhljasbdjka-adsde121	  - Number length doesn't equal 15. Number length doesn't starts with 'docnum' or 'contract'.
+docnum-a2а32f32345	  - Number length doesn't equal 15.
+contract-adsde121	  - Number length doesn't equal 15.
+asjdhbajshsbd1231asdazfvnsdhjkbfjdhksbfjhsdbfhjsdbf-a2а32f32345	  - Number length doesn't equal 15. Number length doesn't starts with 'docnum' or 'contract'.
