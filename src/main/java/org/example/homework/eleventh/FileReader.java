@@ -24,7 +24,7 @@ public class FileReader {
 
     }
 
-    protected List<String> readFromFile(String filePath) {
+    public List<String> readFromFile(String filePath) {
 
         List<String> numbers = new ArrayList<>();
 
