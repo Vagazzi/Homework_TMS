@@ -15,11 +15,9 @@ import java.util.Map;
 public class EleventhHometask {
     public static void main(String[] args) throws URISyntaxException {
 
-        URI templatesURI = ClassLoader.getSystemResource("eleventhHometaskResources/templates.txt").toURI();
         URI validURI = ClassLoader.getSystemResource("eleventhHometaskResources/valid.txt").toURI();
         URI invalidURI = ClassLoader.getSystemResource("eleventhHometaskResources/invalid.txt").toURI();
 
-        String filepath = Paths.get(templatesURI).toString();
         String validFilePath = Paths.get(validURI).toString();
         String invalidFilePath = Paths.get(invalidURI).toString();
 
@@ -28,13 +26,14 @@ public class EleventhHometask {
         FileReader fileReader = new FileReader();
         FileWriter fileWriter = new FileWriter();
 
+        String filepath = fileReader.requestFilePath();
+
         List<String> readingResult = fileReader.readFromFile(filepath);
         Map<String, String> invalidNumbers = validator.checkError(readingResult);
         List<String> validResults = validator.getValidValues(readingResult, invalidNumbers);
 
         fileWriter.writeInFile(validResults, validFilePath);
         fileWriter.writeInFile(invalidNumbers, invalidFilePath);
-
 
     }
 

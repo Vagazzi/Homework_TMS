@@ -22,7 +22,7 @@ public class NumberValidator {
                         .map(validable -> validable.validate(string))
                 .collect(Collectors.toList())))
                 .entrySet().stream()
-                .peek(stringListEntry ->
+                .filter(stringListEntry ->
                         stringListEntry.getValue().removeAll(Collections.singletonList(NumberError.NO_ERROR)))
                 .filter(stringListEntry ->
                         !stringListEntry.getValue().isEmpty())

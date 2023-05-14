@@ -26,15 +26,15 @@ public class FileReader {
 
     protected List<String> readFromFile(String filePath) {
 
-        List<String> numbers = new ArrayList<>();
+        List<String> documentNumbers = new ArrayList<>();
 
         try {
-            numbers = Files.readAllLines(Paths.get(filePath));
+            documentNumbers = Files.readAllLines(Paths.get(filePath));
         } catch (IOException e) {
             log.error(e.toString());
         }
 
-        return numbers;
+        return documentNumbers;
     }
 
 }
