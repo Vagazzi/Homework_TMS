@@ -13,9 +13,6 @@ public class TwelvethHometask {
     private static final String filepath = "C:\\Users\\Vagazzi\\IdeaProjects\\Homework_TMS\\src\\main\\java\\org\\example\\homework\\twelveth\\numbers.txt";
     private static final String initialStringPoolFilePath = "C:\\Users\\Vagazzi\\IdeaProjects\\Homework_TMS\\src\\main\\java\\org\\example\\homework\\twelveth\\stringlist.txt";
     private static final String revertedStringPoolFilePath = "C:\\Users\\Vagazzi\\IdeaProjects\\Homework_TMS\\src\\main\\java\\org\\example\\homework\\twelveth\\revertedlist.txt";
-    List<String> berriesList = new ArrayList<>();
-    List<String> vegetablesList = new ArrayList<>();
-    List<String> fruitList = new ArrayList<>();
 
     public void firstTask() {
         String initialString = "apple pen abbey duck cock bird bitard Animal";
@@ -37,54 +34,66 @@ public class TwelvethHometask {
     }
 
     public void thirdTask() {
-        Map<String, List<String>> edibleItems = new HashMap<>();
 
-        int counter = 0;
+        Map<String, List<String>> edibleItems = new LinkedHashMap<>();
+
+        List<String> berriesList = new ArrayList<>();
+        List<String> fruitList = new ArrayList<>();
+        List<String> vegetablesList = new ArrayList<>();
+
+        edibleItems.put("vegetables", vegetablesList);
+        edibleItems.put("fruits", fruitList);
+        edibleItems.put("berries", berriesList);
+
+        List<String> scannerInput = new ArrayList<>();
+
         try (Scanner scanner = new Scanner(System.in)) {
-            while (counter <= 10) {
+            for (int i = 0; i < 10; i++) {
 
                 log.info("Enter the valid category");
                 String inputCategory = scanner.nextLine();
-                inputCategoryCheck(inputCategory);
+
+                if (isValidCategory(inputCategory)) {
+                    scannerInput.add(inputCategory);
+                }
 
                 log.info("Enter the item");
                 String item = scanner.nextLine();
-                putDataIntoList(item);
+                scannerInput.add(item);
 
-                counter++;
             }
         } catch (InvalidKeyException e) {
             log.info("{}", e.getMessage());
         }
 
-        edibleItems.put("fruits", fruitList);
-        edibleItems.put("vegetables", vegetablesList);
-        edibleItems.put("berries", berriesList);
+        for (int i = 0; i < scannerInput.size(); i++) {
+            if (scannerInput.get(i).equals("berries")) {
+                berriesList.add(scannerInput.get(i + 1));
+            }
+            if (scannerInput.get(i).equals("vegetables")) {
+                vegetablesList.add(scannerInput.get(i + 1));
+            }
+            if (scannerInput.get(i).equals("fruits")) {
+                fruitList.add(scannerInput.get(i + 1));
+            }
+        }
 
-        log.info("fruits = {}", edibleItems.get("fruits"));
-        log.info("fruits = {}", edibleItems.get("vegetables"));
-        log.info("fruits = {}", edibleItems.get("berries"));
+        log.info("{}", edibleItems);
+
+        log.info("{}", edibleItems.get("vegetables"));
+        log.info("{}", edibleItems.get("fruits"));
+        log.info("{}", edibleItems.get("berries"));
 
     }
 
-    private static void inputCategoryCheck(String categoryInput) throws InvalidKeyException {
-        if (!(categoryInput.equals("vegetables") || categoryInput.equals("fruits") || categoryInput.equals("berries")))
+    private static boolean isValidCategory(String categoryInput) throws InvalidKeyException {
+        if (!(categoryInput.equals("vegetables") || categoryInput.equals("fruits") || categoryInput.equals("berries"))) {
             throw new InvalidKeyException("This category is invalid");
+        }
+        return true;
     }
 
-    private void putDataIntoList(String itemInput) {
-        if (itemInput.equals("vegetables")) {
-            vegetablesList.add(itemInput);
-        }
-        if (itemInput.equals("fruits")) {
-            fruitList.add(itemInput);
-        }
-        if (itemInput.equals("berries")) {
-            berriesList.add(itemInput);
-        }
-    }
-
-    public void fourthTask(){
+    public void fourthTask() {
         FileReader fileReader = new FileReader();
         FileWriter fw = new FileWriter();
 
