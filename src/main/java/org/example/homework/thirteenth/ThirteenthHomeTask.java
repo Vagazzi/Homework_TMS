@@ -5,30 +5,44 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+
+import java.time.chrono.ChronoLocalDate;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Date;
+import java.util.List;
+
 import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 
 @Slf4j
 public class ThirteenthHomeTask {
     public static void main(String[] args) {
 
+
         calculateDayOfWeekByInputtedDate();
         calculateNextTuesday();
+
         firstTask();
         secondTask();
 
     }
 
+
     private static void calculateDayOfWeekByInputtedDate() {
 
         try (Scanner sc = new Scanner(System.in)) {
+
 
             log.info("Enter the day");
             int day = Integer.parseInt(sc.nextLine());
@@ -40,6 +54,7 @@ public class ThirteenthHomeTask {
             LocalDate date = LocalDate.of(year, month, day);
 
 
+
             log.info("This day is - {}", date.getDayOfWeek());
         } catch (DateTimeException e) {
             log.info("This date is invalid, try again {}", e);
@@ -49,6 +64,11 @@ public class ThirteenthHomeTask {
     private static void calculateNextTuesday() {
         LocalDate date = LocalDate.now();
         log.info("Date of next tuesday is: {}", date.with(TemporalAdjusters.next(DayOfWeek.TUESDAY)));
+
+    private static void getNextTuesday() {
+        LocalDate date = LocalDate.now();
+        log.info("Date of next tuesday is: {}",  date.with(TemporalAdjusters.next(DayOfWeek.TUESDAY)));
+
     }
 
     private static void firstTask() {
@@ -70,6 +90,7 @@ public class ThirteenthHomeTask {
     }
 
     private static void secondTask() {
+
         Function<String, Integer> vocalLettersCalculating = (string) -> {
 
             int counter = 0;
@@ -79,6 +100,7 @@ public class ThirteenthHomeTask {
 
             while (matcher.find()) {
                 counter++;
+
             }
 
             return counter;
@@ -87,9 +109,11 @@ public class ThirteenthHomeTask {
         ReturnLongerString smth = (first, second) -> {
             if (first.length() > second.length()) {
                 return first;
+
             }
             return second;
         };
+
 
     }
 }

@@ -54,9 +54,9 @@ public class SixthHomework {
     }
 
     private static void setPositions() {
-        Employee ceo = new CEO("CEO");
-        Employee worker = new Worker("Worker");
-        Employee financeManager = new FinanceManager("Finance manager");
+        Employee ceo = new CEO();
+        Employee worker = new Worker();
+        Employee financeManager = new FinanceManager();
 
         System.out.println(ceo.getEmployeePosition());
         System.out.println(worker.getEmployeePosition());

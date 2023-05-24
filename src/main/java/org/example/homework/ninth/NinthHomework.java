@@ -12,15 +12,14 @@ public class NinthHomework {
     public static void main(String[] args) {
 
         callMethodsForMainTask();
-   //     findLongestWord();
-   //     findMinimalSymbolsEntry();
-   //     doubleChar();
+        findLongestWord();
+        findMinimalSymbolsEntry();
+        doubleChar();
 
         try {
-            boolean res = checkPalindrome(4);
+            boolean res = checkPalindrome(2);
             log.info("This word is palindrome? {}", res);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             log.info(e.getMessage());
         }
 
@@ -28,7 +27,7 @@ public class NinthHomework {
 
     private static void callMethodsForMainTask() {
 
-        MainTask.initializeString(4, 'P');
+        MainTask.initializeString(4, 'p');
         MainTask.printNumbersBlock();
         MainTask.replaceChars();
         MainTask.printStringLowCase();
@@ -68,7 +67,7 @@ public class NinthHomework {
                 .orElseThrow()
                 .getKey();
 
-        log.info("Fist string with satisfying conditions: {}", result);
+        log.info("First string with satisfying conditions: {}", result);
     }
 
     private static void doubleChar() {
@@ -81,12 +80,12 @@ public class NinthHomework {
         log.info("New word: {}", result);
     }
 
-    private static boolean checkPalindrome(int wordPosition) throws NoSuchElementException{
+    private static boolean checkPalindrome(int wordPosition) throws NoSuchElementException {
         String tempString = "mem mummy floppa flolf";
 
         String[] s = tempString.split(" ");
 
-        if (wordPosition > s.length) {
+        if (wordPosition >= s.length) {
             throw new NoSuchElementException("Invalid word position is selected");
         }
 

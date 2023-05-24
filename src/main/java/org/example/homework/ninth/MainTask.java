@@ -10,7 +10,7 @@ public class MainTask {
     private static String numberDoc;
 
 
-    static void initializeString(int number, char letter) {
+    public static void initializeString(int number, char letter) {
         StringBuilder tempBuilder = new StringBuilder();
 
         for (int i = 0; i < 2; i++) {
@@ -31,6 +31,10 @@ public class MainTask {
         tempBuilder.append(letter);
 
         numberDoc = tempBuilder.toString();
+    }
+
+    public static String getNumberDoc(){
+        return numberDoc;
     }
 
     static void printNumbersBlock() {
