@@ -1,12 +1,13 @@
 package org.example.homework.fourteenth;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
 import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.function.Predicate;
 
 
 @Slf4j
@@ -19,29 +20,34 @@ public class FourteenthHometask {
     }
 
     private static void firstTask() {
-        List<Integer> list = new ArrayList<>();
-        fillList(list);
+        List<Integer> elements = new ArrayList<>();
+        fillList(elements);
 
         System.out.println("Initial stream");
-        list.forEach(System.out::println);
+        elements.forEach(System.out::println);
 
         System.out.println("Stream with unique elements");
-        list.stream().distinct().toList().forEach(System.out::println);
+        elements.stream().distinct().toList().forEach(System.out::println);
 
         System.out.println("Stream with elements in range [7..17]");
-        list.stream().filter(x -> x > 7 && x < 17).forEach(System.out::println);
+        elements.stream().filter(getIntegerFromRange()).forEach(System.out::println);
 
         System.out.println("Stream with multiplied elements by 2");
-        list.stream().map(x -> x * 2).forEach(System.out::println);
+        elements.stream().map(x -> x * 2).forEach(System.out::println);
 
         System.out.println("Sorted stream with first four elements in them");
-        list.stream().sorted().limit(4).forEach(System.out::println);
+        elements.stream().sorted().limit(4).forEach(System.out::println);
 
-        int count = (int) list.stream().count();
+        int count = (int) elements.stream().count();
         System.out.println("Count of elements in collection is: " + count);
 
-        OptionalDouble average = list.stream().mapToInt(a -> a).average();
+        OptionalDouble average = elements.stream().mapToInt(a -> a).average();
         System.out.println("Average sum of elements is: " + average.getAsDouble());
+    }
+
+    @NotNull
+    private static Predicate<Integer> getIntegerFromRange() {
+        return x -> (x > 7 && x < 17) && x % 2 == 0;
     }
 
     private static void secondTask() {
@@ -58,7 +64,7 @@ public class FourteenthHometask {
 
         students.stream().filter(x -> x.contains("Vadim")).forEach(System.out::println);
         students.stream().filter(x -> x.startsWith("A") || x.startsWith("a")).forEach(System.out::println);
-        String element = students.stream().sorted().limit(1).findFirst().orElse("Empty");
+        String element = students.stream().sorted().findFirst().orElse("Empty");
         log.info("{}", element);
 
     }
@@ -67,7 +73,7 @@ public class FourteenthHometask {
     private static List<Integer> fillList(List<Integer> list) {
         for (int i = 0; i < 20; i++) {
             Random random = new Random();
-            list.add(i, random.nextInt(20));
+            list.add(random.nextInt(20));
         }
         return list;
     }
