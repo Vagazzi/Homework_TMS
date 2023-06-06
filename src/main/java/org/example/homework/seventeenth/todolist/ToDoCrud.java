@@ -1,5 +1,6 @@
 package org.example.homework.seventeenth.todolist;
 
+import lombok.AllArgsConstructor;
 import org.example.homework.fourth.InvalidNumberException;
 import org.example.homework.seventeenth.todolist.enums.CompletionStatus;
 import org.example.homework.seventeenth.todolist.enums.Priority;
@@ -7,22 +8,17 @@ import org.example.homework.seventeenth.todolist.enums.Priority;
 import java.io.*;
 import java.util.Scanner;
 
-import static org.example.homework.seventeenth.todolist.JsonFileHandler.readFromFile;
-import static org.example.homework.seventeenth.todolist.JsonFileHandler.writeJsonInFile;
 import static org.example.homework.seventeenth.todolist.Messages.*;
-import static org.example.homework.seventeenth.todolist.ToDoList.*;
-import static org.example.homework.seventeenth.todolist.ToDoTask.*;
 
-
+@AllArgsConstructor
 public class ToDoCrud {
 
-    public static void main(String[] args) throws InvalidNumberException, IOException {
+    private static long counter = 1;
+    private final ToDoTaskService taskService;
+    private final ToDoList toDoList;
+    private final JsonFileHandler jsonFileHandler;
 
-        printMenu();
-
-    }
-
-    private static void printMenu() throws InvalidNumberException, IOException {
+    public void printMenu() throws InvalidNumberException, IOException {
 
         System.out.println("Your to-do list application");
 
@@ -35,11 +31,11 @@ public class ToDoCrud {
 
             switch (optionNumber) {
                 case 1 -> addTask();
-                case 2 -> printTaskList(DEFAULT_MESSAGE);
+                case 2 -> toDoList.printTaskList(DEFAULT_MESSAGE);
                 case 3 -> deleteTasks();
                 case 4 -> editInfo();
-                case 5 -> writeJsonInFile();
-                case 6 -> readFromFile();
+                case 5 -> jsonFileHandler.writeJsonInFile(toDoList);
+                case 6 -> jsonFileHandler.readFromFile(toDoList);
                 case 0 -> {
                     return;
                 }
@@ -48,7 +44,7 @@ public class ToDoCrud {
         }
     }
 
-    private static void addTask() {
+    private void addTask() {
 
         System.out.println("-------------------------");
 
@@ -60,8 +56,8 @@ public class ToDoCrud {
         try {
 
             int priority = getInput(scanner, TASK_PRIORITY_MESSAGE);
-            Priority taskPriority = convertPriorityInput(priority);
-            ToDoList.getTasks().add(new ToDoTask(taskText, taskPriority, CompletionStatus.NOT_COMPLETED));
+            Priority taskPriority = taskService.convertPriorityInput(priority);
+            toDoList.getTasks().add(new ToDoTask(counter++, taskText, taskPriority, CompletionStatus.NOT_COMPLETED));
 
         } catch (InvalidNumberException e) {
             e.printStackTrace();
@@ -69,48 +65,57 @@ public class ToDoCrud {
 
         System.out.println("-------------------------");
     }
-    private static void deleteTasks() {
 
-        if (isEmptyTaskList()) return;
+    private void deleteTasks() {
 
+        if (toDoList.isEmptyTaskList()) return;
+
+        toDoList.printTaskList(DEFAULT_MESSAGE);
         System.out.println(REMOVING_MESSAGE);
 
         Scanner scanner = new Scanner(System.in);
         switch (scanner.nextInt()) {
 
-            case 1 -> removeElementByPosition();
-            case 2 -> removeAllElements();
+            case 1 -> {
+
+                System.out.println("Select the id of task");
+                int id = scanner.nextInt();
+                toDoList.removeElementById(id);
+                System.out.println("New to-do list:");
+
+            }
+            case 2 -> {
+                System.out.println(REMOVING_EVERYTHING_MESSAGE);
+                String decision = scanner.nextLine();
+                while (!(decision = scanner.nextLine()).isEmpty()) {
+                    toDoList.removeAllElements(decision);
+                }
+            }
             default -> System.out.println("Invalid input was detected, try again");
 
         }
+
+        toDoList.printTaskList(NEW_MESSAGE);
     }
-    public static int getInput(Scanner scanner, String message) {
+
+    private int getInput(Scanner scanner, String message) {
 
         System.out.println(message);
 
         return scanner.nextInt();
     }
-    public static void printTaskList(String message) {
 
-        System.out.println("--------------------------------------------------");
-        if (ToDoList.getTasks().isEmpty()) {
-            System.out.println("Your to-do list is empty!");
-        } else {
-            System.out.println(message);
-            System.out.println(ToDoList.getTasks());
-        }
-        System.out.println("--------------------------------------------------");
-    }
-    private static void editInfo() throws InvalidNumberException {
 
-        if (isEmptyTaskList()) return;
+    private void editInfo() throws InvalidNumberException {
 
-        printTaskList(DEFAULT_MESSAGE);
+        if (toDoList.isEmptyTaskList()) return;
+
+        toDoList.printTaskList(DEFAULT_MESSAGE);
 
         System.out.println("Select the task: ");
         Scanner taskScanner = new Scanner(System.in);
         int position = taskScanner.nextInt();
-        ToDoTask editingTask = ToDoList.getTasks().get(position);
+        ToDoTask editingTask = toDoList.getTasks().get(position);
 
         System.out.println("""
                 Select the kind of editing info:
@@ -120,11 +125,24 @@ public class ToDoCrud {
                 """);
         Scanner editScanner = new Scanner(System.in);
         switch (editScanner.nextInt()) {
-            case 1 -> editPriority(editingTask);
-            case 2 -> editText(editingTask);
-            case 3 -> editCompletionStatus(editingTask);
+
+            case 1 -> {
+                int priority = getInput(editScanner, COMPLETION_STATUS_MESSAGE);
+                taskService.editPriority(editingTask, priority);
+            }
+            case 2 -> {
+                System.out.println("Enter the new task text");
+                taskService.editText(editingTask, editScanner.nextLine());
+            }
+            case 3 -> {
+                int competitionStatus = getInput(editScanner, COMPLETION_STATUS_MESSAGE);
+                taskService.editCompletionStatus(editingTask, competitionStatus);
+            }
             default -> System.out.println("Invalid input was detected, try again");
+
         }
+
+        toDoList.printTaskList(NEW_MESSAGE);
     }
 
 }

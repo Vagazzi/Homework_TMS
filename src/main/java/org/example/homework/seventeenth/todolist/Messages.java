@@ -31,4 +31,9 @@ public class Messages {
                     6) Read from file;
                     0) Exit out of the program.
                     """;
+
+    public static final String REMOVING_EVERYTHING_MESSAGE = """
+                    Are you sure to delete everything from to-do list?
+                    Type "Yes" or "No".
+                """;
 }

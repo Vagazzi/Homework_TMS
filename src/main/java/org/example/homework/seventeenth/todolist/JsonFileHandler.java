@@ -22,10 +22,10 @@ public class JsonFileHandler {
         return FILE_PATH;
     }
 
-    public static void writeJsonInFile() throws JsonProcessingException {
+    public  void writeJsonInFile(ToDoList list) throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(ToDoList.getTasks());
+        String jsonString = mapper.writeValueAsString(list.getTasks());
 
         System.out.println("Summary JSON");
         System.out.println(jsonString);
@@ -37,7 +37,7 @@ public class JsonFileHandler {
         }
     }
 
-    public static void readFromFile() throws IOException {
+    public  void readFromFile(ToDoList list) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         File file = new File(JsonFileHandler.getFilePath());
@@ -48,7 +48,7 @@ public class JsonFileHandler {
         System.out.println(tasks);
 
         for (ToDoTask task : tasks) {
-            ToDoList.getTasks().add(task);
+            list.getTasks().add(task);
         }
 
     }
