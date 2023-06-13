@@ -10,10 +10,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Student {
+
     private int id;
     private String name;
     private String course;
     private String cafedre;
     private int age;
     private String city;
+
 }

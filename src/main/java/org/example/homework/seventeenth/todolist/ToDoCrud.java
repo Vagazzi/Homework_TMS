@@ -1,6 +1,7 @@
 package org.example.homework.seventeenth.todolist;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.example.homework.fourth.InvalidNumberException;
 import org.example.homework.seventeenth.todolist.enums.CompletionStatus;
 import org.example.homework.seventeenth.todolist.enums.Priority;
