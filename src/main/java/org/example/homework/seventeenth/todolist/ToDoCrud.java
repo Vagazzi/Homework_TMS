@@ -6,6 +6,7 @@ import org.example.homework.seventeenth.todolist.enums.CompletionStatus;
 import org.example.homework.seventeenth.todolist.enums.Priority;
 
 import java.io.*;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static org.example.homework.seventeenth.todolist.Messages.*;
@@ -13,7 +14,7 @@ import static org.example.homework.seventeenth.todolist.Messages.*;
 @AllArgsConstructor
 public class ToDoCrud {
 
-    private static long initialCounter = 1;
+    private long initialCounter = 1;
     private static long currentCounter;
     private final ToDoTaskService taskService;
     private final ToDoList toDoList;
@@ -58,11 +59,14 @@ public class ToDoCrud {
 
             int priority = getIntegerValueFromClient(scanner, TASK_PRIORITY_MESSAGE);
             Priority taskPriority = taskService.convertPriorityInput(priority);
-            initialCounter++;
-            currentCounter = initialCounter;
+
+            if(toDoList.getTasks().get(toDoList.getTasks().size() - 1).getId() == 0)
+                currentCounter++;
+
+            currentCounter = toDoList.getTasks().get(toDoList.getTasks().size() - 1).getId();
             toDoList.getTasks().add(new ToDoTask(currentCounter, taskText, taskPriority, CompletionStatus.NOT_COMPLETED));
 
-        } catch (InvalidNumberException e) {
+        } catch (InvalidNumberException | NoSuchElementException e) {
             e.printStackTrace();
         }
 
