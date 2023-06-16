@@ -30,14 +30,14 @@ public class JsonFileHandler {
         System.out.println("Summary JSON");
         System.out.println(jsonString);
 
-        try (PrintWriter pw = new PrintWriter(new FileOutputStream(FILE_PATH), false)) {
+        try (PrintWriter pw = new PrintWriter(new FileOutputStream(FILE_PATH))) {
             pw.println(jsonString);
         } catch (IOException e) {
             log.error("{}", e.getMessage());
         }
     }
 
-    public  void readFromFile(ToDoList list) throws IOException {
+    public  List<ToDoTask> readFromFile(ToDoList list) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
         File file = new File(JsonFileHandler.getFilePath());
@@ -51,5 +51,6 @@ public class JsonFileHandler {
             list.getTasks().add(task);
         }
 
+        return tasks;
     }
 }

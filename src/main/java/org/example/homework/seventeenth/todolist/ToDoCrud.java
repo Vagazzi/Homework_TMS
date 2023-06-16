@@ -13,7 +13,8 @@ import static org.example.homework.seventeenth.todolist.Messages.*;
 @AllArgsConstructor
 public class ToDoCrud {
 
-    private static long counter = 1;
+    private static long initialCounter = 1;
+    private static long currentCounter;
     private final ToDoTaskService taskService;
     private final ToDoList toDoList;
     private final JsonFileHandler jsonFileHandler;
@@ -32,7 +33,7 @@ public class ToDoCrud {
             switch (optionNumber) {
                 case 1 -> addTask();
                 case 2 -> toDoList.printTaskList(DEFAULT_MESSAGE);
-                case 3 -> deleteTasks();
+                case 3 -> deleteTask();
                 case 4 -> editInfo();
                 case 5 -> jsonFileHandler.writeJsonInFile(toDoList);
                 case 6 -> jsonFileHandler.readFromFile(toDoList);
@@ -55,9 +56,11 @@ public class ToDoCrud {
 
         try {
 
-            int priority = getInput(scanner, TASK_PRIORITY_MESSAGE);
+            int priority = getIntegerValueFromClient(scanner, TASK_PRIORITY_MESSAGE);
             Priority taskPriority = taskService.convertPriorityInput(priority);
-            toDoList.getTasks().add(new ToDoTask(counter++, taskText, taskPriority, CompletionStatus.NOT_COMPLETED));
+            initialCounter++;
+            currentCounter = initialCounter;
+            toDoList.getTasks().add(new ToDoTask(currentCounter, taskText, taskPriority, CompletionStatus.NOT_COMPLETED));
 
         } catch (InvalidNumberException e) {
             e.printStackTrace();
@@ -66,7 +69,7 @@ public class ToDoCrud {
         System.out.println("-------------------------");
     }
 
-    private void deleteTasks() {
+    private void deleteTask() {
 
         if (toDoList.isEmptyTaskList()) return;
 
@@ -98,7 +101,7 @@ public class ToDoCrud {
         toDoList.printTaskList(NEW_MESSAGE);
     }
 
-    private int getInput(Scanner scanner, String message) {
+    private int getIntegerValueFromClient(Scanner scanner, String message) {
 
         System.out.println(message);
 
@@ -123,19 +126,19 @@ public class ToDoCrud {
                 2) Edit the text of task;
                 3) Edit the status of completion task;
                 """);
-        Scanner editScanner = new Scanner(System.in);
-        switch (editScanner.nextInt()) {
+
+        switch (taskScanner.nextInt()) {
 
             case 1 -> {
-                int priority = getInput(editScanner, COMPLETION_STATUS_MESSAGE);
+                int priority = getIntegerValueFromClient(taskScanner, COMPLETION_STATUS_MESSAGE);
                 taskService.editPriority(editingTask, priority);
             }
             case 2 -> {
                 System.out.println("Enter the new task text");
-                taskService.editText(editingTask, editScanner.nextLine());
+                taskService.editText(editingTask, taskScanner.next());
             }
             case 3 -> {
-                int competitionStatus = getInput(editScanner, COMPLETION_STATUS_MESSAGE);
+                int competitionStatus = getIntegerValueFromClient(taskScanner, COMPLETION_STATUS_MESSAGE);
                 taskService.editCompletionStatus(editingTask, competitionStatus);
             }
             default -> System.out.println("Invalid input was detected, try again");
