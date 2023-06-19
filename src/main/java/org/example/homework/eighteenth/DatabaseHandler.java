@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler {
-    public static List<Student> readDataWithDefaultQuery(String URL, String user, String password, String query) {
-
+    public static List<Student> readData(String URL, String user, String password, String query, boolean hasACity) {
+        List<Student> students = new ArrayList<>();
         try (Connection connection =
                      DriverManager.getConnection(URL, user, password);
 
              Statement statement = connection.createStatement()) {
 
             ResultSet result = statement.executeQuery(query);
-            List<Student> students = new ArrayList<>();
+
 
             while (result.next()) {
 
@@ -21,8 +21,14 @@ public class DatabaseHandler {
                 String name = result.getString("name");
                 String course = result.getString("course");
                 String cafedre = result.getString("cafedre");
+                String city;
                 int age = result.getInt("age");
-                Student student = new Student(id, name, course, cafedre, age,"no data");
+                if (hasACity) {
+                    city = result.getString("city");
+                } else {
+                    city = "no data";
+                }
+                Student student = new Student(id, name, course, cafedre, age, city);
                 students.add(student);
 
             }
@@ -33,38 +39,8 @@ public class DatabaseHandler {
             System.out.println(e.getMessage());
         }
 
-        return null;
+        return students;
     }
 
-    public static List<Student> readDataWithJoinQuery(String URL, String user, String password, String query) {
 
-        try (Connection connection =
-                     DriverManager.getConnection(URL, user, password);
-
-             Statement statement = connection.createStatement()) {
-
-            ResultSet result = statement.executeQuery(query);
-            List<Student> students = new ArrayList<>();
-
-            while (result.next()) {
-
-                int id = result.getInt("id_student");
-                String name = result.getString("name");
-                String course = result.getString("course");
-                String cafedre = result.getString("cafedre");
-                int age = result.getInt("age");
-                String city = result.getString("city");
-                Student student = new Student(id, name, course, cafedre, age,city);
-                students.add(student);
-
-            }
-
-            return students;
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return null;
-    }
 }
