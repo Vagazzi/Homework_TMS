@@ -8,8 +8,8 @@ public class Main {
         MySQLConfig msSQL = new MySQLConfig();
 
 
-        List<Student> MySQLStudentsDefQuery = DatabaseHandler.readData(msSQL.getURL(),msSQL.getUser(),msSQL.getPassword(),msSQL.getDefault_query(),false);
-        List<Student> MySQLStudentsJoinQuery = DatabaseHandler.readData(msSQL.getURL(),msSQL.getUser(),msSQL.getPassword(),msSQL.getJoin_query(),true);
+        List<Student> MySQLStudentsDefQuery = DatabaseHandler.readData(msSQL.getURL(),msSQL.getUser(),msSQL.getPassword(),msSQL.getDefaultQuery(),false);
+        List<Student> MySQLStudentsJoinQuery = DatabaseHandler.readData(msSQL.getURL(),msSQL.getUser(),msSQL.getPassword(),msSQL.getJoinQuery(),true);
 
         System.out.println("MySQL queries");
         System.out.println(MySQLStudentsDefQuery);
@@ -17,8 +17,8 @@ public class Main {
         System.out.println("--------------");
 
 
-        List<Student> PSQLStudentsDefQuery = DatabaseHandler.readData(psql.getURL(),psql.getUser(),psql.getPassword(),psql.getDefault_query(),false);
-        List<Student> PSQLStudentsJoinQuery = DatabaseHandler.readData(psql.getURL(),psql.getUser(),psql.getPassword(),psql.getJoin_query(),true);
+        List<Student> PSQLStudentsDefQuery = DatabaseHandler.readData(psql.getURL(),psql.getUser(),psql.getPassword(),psql.getDefaultQuery(),false);
+        List<Student> PSQLStudentsJoinQuery = DatabaseHandler.readData(psql.getURL(),psql.getUser(),psql.getPassword(),psql.getJoinQuery(),true);
         System.out.println("PSQL queries");
         System.out.println(PSQLStudentsDefQuery);
         System.out.println(PSQLStudentsJoinQuery);

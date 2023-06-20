@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHandler {
-    public static List<Student> readData(String URL, String user, String password, String query, boolean hasACity) {
+    public static List<Student> readData(String URL, String user, String password, String query, boolean hasCity) {
         List<Student> students = new ArrayList<>();
         try (Connection connection =
                      DriverManager.getConnection(URL, user, password);
@@ -23,7 +23,7 @@ public class DatabaseHandler {
                 String cafedre = result.getString("cafedre");
                 String city;
                 int age = result.getInt("age");
-                if (hasACity) {
+                if (hasCity) {
                     city = result.getString("city");
                 } else {
                     city = "no data";
